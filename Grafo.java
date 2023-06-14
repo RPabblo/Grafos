@@ -20,6 +20,7 @@ public class Grafo {
         public void setPeso(int peso) {this.peso = peso;}
     }
 
+
     private int matAdj[][];
     private int numVertices;
     private int pos[];
@@ -38,13 +39,16 @@ public class Grafo {
         }
     }
 
+
     public void inserirAresta(int v1, int v2, int peso) {
         this.matAdj[v1][v2] = peso;
     }
 
+
     public boolean existeAresta(int v1, int v2) {
         return matAdj[v1][v2] != Integer.MAX_VALUE;
     }
+
 
     public boolean listaAdjVazia(int v1) {
         for(int i = 0; i < this.numVertices; i++) {
@@ -52,6 +56,7 @@ public class Grafo {
         }
         return true;
     }
+
 
     public Aresta proxAdj(int vertice) {
         this.pos[vertice] += 1;
@@ -65,6 +70,7 @@ public class Grafo {
         return null;
     }
 
+
     public Aresta removerAresta(int v1, int v2) {
         if(this.matAdj[v1][v2] == Integer.MAX_VALUE) return null;
         else {
@@ -74,15 +80,19 @@ public class Grafo {
         }
     }
 
-    public void imprimirGrafo() {
-        System.out.println("Grafo:\n\n");
 
-        for(int i = 0; i < this.numVertices; i++) {
-            System.out.println(i + "      ");
-        }
+    public void imprimirGrafo() {
+        System.out.println("Grafo:\n ");
+        System.out.print("     ");
+
 
         for(int i = 0; i < this.numVertices; i++) {
             System.out.print(i + "      ");
+        }
+        System.out.print("\n");
+
+        for(int i = 0; i < this.numVertices; i++) {
+            System.out.print(i + " ");
             for(int j = 0; j < this.numVertices; j++) {
                 if(matAdj[i][j] == Integer.MAX_VALUE) {
                     System.out.print("  INF  ");
@@ -91,6 +101,15 @@ public class Grafo {
                     System.out.print(" " + matAdj[i][j] + " ");
                 }
             }
+            System.out.print("\n");
         }
+    }
+
+    public int getNumVertices() {
+        return this.numVertices;
+    }
+
+    public int getAresta(int v1, int v2) {
+        return this.matAdj[v1][v2];
     }
 }
